@@ -1,0 +1,752 @@
+/* ===== IMPORT ARTISTIC FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #f5f3f0;
+  --text-secondary: #c9c0b8;
+  --text-tertiary: #8a8278;
+  --accent-1: #c65d3b;
+  --accent-2: #4a5d6b;
+  --border-light: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(30, 27, 23, 0.8);
+  --hover-bg: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f9f6f0;
+  --bg-secondary: #ede8e0;
+  --text-primary: #2a2420;
+  --text-secondary: #5a5248;
+  --text-tertiary: #8a8278;
+  --accent-1: #c65d3b;
+  --accent-2: #4a5d6b;
+  --border-light: rgba(0, 0, 0, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --hover-bg: rgba(0, 0, 0, 0.03);
+}
+
+/* ===== BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== RITUALS PAGE ===== */
+.rituals-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease;
+}
+
+/* ===== BACKGROUND ===== */
+.rp-bg-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rp-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 1200px 600px at 20% 30%, rgba(198, 93, 59, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 1000px 500px at 80% 70%, rgba(74, 93, 107, 0.06) 0%, transparent 50%);
+}
+
+.rp-decorative-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+  animation: rp-drift 20s linear infinite;
+}
+
+[data-theme="light"] .rp-decorative-lines {
+  opacity: 0.15;
+}
+
+@keyframes rp-drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+/* ===== HEADER ===== */
+.rp-header {
+  position: relative;
+  z-index: 100;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-light);
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .rp-header {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.rp-header-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.rp-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.rp-back-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.rp-back-btn:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+}
+
+.rp-back-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.rp-page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0 0 0.2rem 0;
+}
+
+.rp-page-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.rp-header-right {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.rp-theme-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.rp-theme-btn:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+}
+
+.rp-theme-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.rp-logout-btn {
+  background: var(--accent-1);
+  border: none;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  width: 36px;
+  height: 36px;
+}
+
+.rp-logout-btn:hover {
+  background: #b34d2e;
+}
+
+.rp-logout-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== MAIN CONTENT ===== */
+.rp-main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  padding: 3rem 2rem;
+}
+
+.rp-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* ===== RITUAL CARD ===== */
+.rp-ritual-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  padding: 2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.rp-ritual-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rp-ritual-card:hover::before {
+  opacity: 1;
+}
+
+.rp-ritual-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .rp-ritual-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.rp-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rp-card-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin: 0;
+  letter-spacing: 1.5px;
+}
+
+.rp-card-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.rp-card-description {
+  font-family: 'Crimson Text', serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.rp-card-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  padding: 0.8rem;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.rp-card-btn:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+.rp-card-btn svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.rp-card-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ===== DETAIL PAGE ===== */
+.ritual-detail-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease;
+}
+
+.rp-detail-header {
+  position: relative;
+  z-index: 100;
+  padding: 2rem;
+  border-bottom: 1px solid var(--border-light);
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .rp-detail-header {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.rp-detail-header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.rp-detail-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.rp-ritual-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: 0 0 0.3rem 0;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.rp-ritual-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 0;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.rp-detail-controls {
+  display: flex;
+  gap: 0.8rem;
+}
+
+/* ===== DETAIL MAIN ===== */
+.rp-detail-main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  padding: 3rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ===== SECTIONS ===== */
+.rp-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.rp-section:last-of-type {
+  border-bottom: none;
+}
+
+.rp-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1.5px;
+}
+
+.rp-section-content {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* ===== BENEFITS ===== */
+.rp-benefits-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.rp-benefit-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.rp-benefit-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-1);
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+
+.rp-benefit-item span:last-child {
+  font-family: 'Crimson Text', serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ===== STEPS ===== */
+.rp-steps-list {
+  list-style: none;
+  counter-reset: step-counter;
+  padding: 0;
+}
+
+.rp-step-item {
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 1.5rem;
+  counter-increment: step-counter;
+  font-family: 'Crimson Text', serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.rp-step-item::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  background: var(--accent-1);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* ===== VIDEO ===== */
+.rp-video-section {
+  border: none;
+  margin-bottom: 2rem;
+}
+
+.rp-video-container {
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+}
+
+.rp-video-container iframe {
+  border-radius: 2px;
+}
+
+/* ===== ACTIONS ===== */
+.rp-actions {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.rp-practice-btn {
+  background: var(--accent-1);
+  border: none;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.rp-practice-btn:hover {
+  background: #b34d2e;
+  transform: translateY(-2px);
+}
+
+.rp-practice-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* ===== TRACKER ===== */
+.rp-tracker-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.rp-tracker-display {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.rp-timer {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--accent-1);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rp-tracker-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.rp-btn-start,
+.rp-btn-save,
+.rp-btn-reset {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.rp-btn-start {
+  background: var(--accent-1);
+  color: white;
+}
+
+.rp-btn-start:hover {
+  background: #b34d2e;
+}
+
+.rp-btn-save {
+  background: var(--accent-2);
+  color: white;
+}
+
+.rp-btn-save:hover {
+  background: #3a4d5b;
+}
+
+.rp-btn-reset {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+}
+
+.rp-btn-reset:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+/* ===== SESSIONS ===== */
+.rp-sessions-list {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.rp-sessions-list h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.rp-session-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: 'Crimson Text', serif;
+  font-size: 0.95rem;
+}
+
+.rp-session-item:last-child {
+  border-bottom: none;
+}
+
+.rp-session-time {
+  color: var(--accent-1);
+  font-weight: 600;
+}
+
+.rp-session-date {
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .rp-header,
+  .rp-detail-header {
+    padding: 1.2rem;
+  }
+
+  .rp-page-title {
+    font-size: 1.6rem;
+  }
+
+  .rp-ritual-name {
+    font-size: 1.8rem;
+  }
+
+  .rp-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .rp-detail-main {
+    padding: 2rem 1.5rem;
+  }
+
+  .rp-section-title {
+    font-size: 1.5rem;
+  }
+
+  .rp-timer {
+    font-size: 3rem;
+  }
+
+  .rp-benefits-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .rp-header-left {
+    gap: 1rem;
+  }
+
+  .rp-page-title {
+    font-size: 1.3rem;
+  }
+
+  .rp-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .rp-ritual-card {
+    padding: 1.5rem;
+  }
+
+  .rp-detail-main {
+    padding: 1.5rem 1rem;
+  }
+
+  .rp-ritual-name {
+    font-size: 1.5rem;
+  }
+
+  .rp-section-title {
+    font-size: 1.3rem;
+  }
+
+  .rp-timer {
+    font-size: 2.5rem;
+  }
+
+  .rp-tracker-buttons {
+    flex-direction: column;
+  }
+
+  .rp-btn-start,
+  .rp-btn-save,
+  .rp-btn-reset {
+    width: 100%;
+  }
+}

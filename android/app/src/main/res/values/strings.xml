@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">RVTracker</string>
+    <string name="title_activity_main">RVTracker</string>
+    <string name="package_name">com.RVTracker.app</string>
+    <string name="custom_url_scheme">com.RVTracker.app</string>
+</resources>

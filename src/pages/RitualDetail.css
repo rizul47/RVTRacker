@@ -1,0 +1,534 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #f5f3f0;
+  --text-secondary: #c9c0b8;
+  --text-tertiary: #8a8278;
+  --accent-1: #c65d3b;
+  --accent-2: #4a5d6b;
+  --border-light: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(30, 27, 23, 0.8);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f9f6f0;
+  --bg-secondary: #ede8e0;
+  --text-primary: #2a2420;
+  --text-secondary: #5a5248;
+  --text-tertiary: #8a8278;
+  --accent-1: #c65d3b;
+  --accent-2: #4a5d6b;
+  --border-light: rgba(0, 0, 0, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.7);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== RITUAL DETAIL PAGE ===== */
+.ritual-detail {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Crimson Text', serif;
+  transition: background-color 0.4s ease;
+}
+
+.ritual-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  font-family: 'Crimson Text', serif;
+}
+
+/* ===== HEADER ===== */
+.ritual-header {
+  position: relative;
+  z-index: 100;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.ritual-back-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.ritual-back-btn:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+}
+
+.ritual-back-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.ritual-detail-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--accent-1);
+  letter-spacing: 1.5px;
+  flex: 1;
+}
+
+.ritual-icon-placeholder {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(198, 93, 59, 0.1);
+  border: 1px solid var(--border-light);
+  border-radius: 50%;
+}
+
+/* ===== CONTENT ===== */
+.ritual-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ===== STATS ===== */
+.ritual-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stat-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 0.8rem;
+}
+
+.stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ===== DIVIDER ===== */
+.ritual-divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 2rem 0;
+}
+
+/* ===== SECTIONS ===== */
+.ritual-section {
+  margin-bottom: 2.5rem;
+}
+
+.ritual-section h2 {
+  font-family: 'Cormorant+Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+.ritual-description {
+  font-family: 'EB+Garamond', serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.ritual-details {
+  font-family: 'Crimson+Text', serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* ===== STEPS (How to Practice) ===== */
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.step {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.step-number {
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-1);
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.step-content p {
+  font-family: 'Crimson+Text', serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ===== BENEFITS ===== */
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.benefit-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.benefit-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-1);
+  border-radius: 50%;
+  margin-top: 0.7rem;
+  flex-shrink: 0;
+}
+
+.benefit-item p {
+  font-family: 'Crimson+Text', serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ===== PRACTICE BUTTON ===== */
+.practice-now-btn {
+  width: 100%;
+  padding: 1.2rem;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-family: 'Cormorant+Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+}
+
+.practice-now-btn:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+  background: rgba(198, 93, 59, 0.05);
+}
+
+.practice-now-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* ===== TIMER PAGE ===== */
+.ritual-timer-page .ritual-header {
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+.ritual-timer-title {
+  font-family: 'Bodoni+Moda', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent-1);
+  letter-spacing: 1.5px;
+}
+
+/* ===== TIMER TRACKER ===== */
+.timer-tracker {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.timer-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 1.2rem;
+}
+
+.timer-display {
+  font-family: 'Playfair+Display', serif;
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: var(--accent-1);
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.timer-btn {
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.timer-start {
+  background: var(--accent-1);
+  border-color: var(--accent-1);
+  color: white;
+}
+
+.timer-start:hover {
+  opacity: 0.9;
+  box-shadow: 0 8px 20px rgba(198, 93, 59, 0.2);
+}
+
+.timer-pause {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: white;
+}
+
+.timer-pause:hover {
+  opacity: 0.9;
+}
+
+.timer-stop {
+  background: transparent;
+  border-color: var(--text-secondary);
+  color: var(--text-secondary);
+}
+
+.timer-stop:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+}
+
+.timer-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.timer-save-btn,
+.timer-reset-btn {
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.timer-save-btn:hover:not(:disabled) {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+  background: rgba(198, 93, 59, 0.05);
+}
+
+.timer-save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.timer-reset-btn:hover {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+  background: rgba(74, 93, 107, 0.05);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .ritual-header {
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .ritual-detail-title {
+    font-size: 1.5rem;
+    flex-basis: 100%;
+    order: -1;
+  }
+
+  .ritual-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.8rem;
+  }
+
+  .ritual-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .timer-display {
+    font-size: 3.5rem;
+  }
+
+  .timer-tracker {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ritual-header {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .ritual-detail-title {
+    font-size: 1.3rem;
+  }
+
+  .ritual-icon-placeholder {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+  }
+
+  .ritual-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .ritual-stats {
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .ritual-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+
+  .timer-display {
+    font-size: 2.8rem;
+  }
+
+  .timer-tracker {
+    padding: 1.5rem 1rem;
+  }
+
+  .timer-btn {
+    padding: 0.8rem 1rem;
+    font-size: 0.75rem;
+    min-width: 100px;
+  }
+
+  .practice-now-btn {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+}

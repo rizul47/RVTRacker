@@ -1,0 +1,374 @@
+/* Warm Yellow Theme - Practice Page */
+.practice-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1814 0%, #2d2a24 50%, #1f1c17 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.practice-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  color: #a8a29e;
+}
+
+/* Background glow */
+.practice-page::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--practice-color, rgba(251, 191, 36, 0.1)) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+/* Header */
+.practice-header {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+}
+
+.practice-back-btn {
+  background: rgba(45, 42, 36, 0.9);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.practice-back-btn:hover {
+  background: rgba(251, 191, 36, 0.1);
+  transform: translateX(-4px);
+}
+
+.practice-back-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Main content */
+.practice-content {
+  text-align: center;
+  z-index: 2;
+  max-width: 500px;
+  width: 100%;
+}
+
+.practice-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.practice-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 0.5rem;
+}
+
+.practice-subtitle {
+  color: #a8a29e;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Timer */
+.timer-container {
+  margin-bottom: 2rem;
+}
+
+.timer-circle {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto 1.5rem;
+}
+
+.timer-svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.timer-bg {
+  fill: none;
+  stroke: rgba(251, 191, 36, 0.1);
+  stroke-width: 8;
+}
+
+.timer-progress {
+  fill: none;
+  stroke: var(--practice-color, #fbbf24);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.timer-time {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-label {
+  font-size: 0.85rem;
+  color: #a8a29e;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Controls */
+.practice-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.control-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  border: none;
+  color: #1a1814;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+}
+
+.pause-btn {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  color: #fbbf24;
+}
+
+.pause-btn:hover {
+  background: rgba(251, 191, 36, 0.2);
+}
+
+.reset-btn {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: #f87171;
+}
+
+.reset-btn:hover {
+  background: rgba(220, 38, 38, 0.2);
+}
+
+/* Completed state */
+.completed-message {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.completed-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.completed-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 0.5rem;
+}
+
+.completed-text {
+  color: #a8a29e;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.completed-btn {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  border: none;
+  color: #1a1814;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.completed-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+}
+
+.completed-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Tips section */
+.practice-tips {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: rgba(45, 42, 36, 0.8);
+  border: 1px solid rgba(251, 191, 36, 0.1);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.practice-tips h4 {
+  color: #fbbf24;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.practice-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.practice-tips li {
+  color: #d6d3d1;
+  font-size: 0.85rem;
+  padding: 0.375rem 0;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.practice-tips li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #fbbf24;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .practice-page {
+    padding: 1.5rem;
+  }
+
+  .practice-title {
+    font-size: 1.5rem;
+  }
+
+  .timer-circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .timer-time {
+    font-size: 2.5rem;
+  }
+
+  .practice-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .control-btn {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .practice-icon {
+    font-size: 3.5rem;
+  }
+
+  .timer-circle {
+    width: 180px;
+    height: 180px;
+  }
+
+  .timer-time {
+    font-size: 2rem;
+  }
+
+  .practice-header {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .practice-back-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}

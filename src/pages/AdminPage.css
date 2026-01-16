@@ -1,0 +1,628 @@
+/* Sage Green & Cream Theme - Admin Dashboard with Calligraphy */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Pinyon+Script&display=swap');
+
+.admin-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #14141a 50%, #0f0f12 100%);
+  color: rgba(255, 255, 255, 0.98);
+  padding: 2rem 2rem 2rem 7rem;
+}
+
+.admin-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header */
+.admin-header {
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-icon {
+  font-size: 2rem;
+}
+
+.admin-title {
+  font-size: 2.5rem;
+  font-family: 'Cinzel Decorative', display;
+  font-weight: 700;
+  color: #8fa8a0;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.admin-subtitle {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.logout-btn {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  color: #f87171;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(220, 38, 38, 0.15);
+  border-color: rgba(220, 38, 38, 0.4);
+}
+
+.logout-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Content Area */
+.admin-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Form Section */
+.admin-form-section {
+  background: linear-gradient(145deg, rgba(20, 20, 25, 0.95), rgba(15, 15, 20, 0.98));
+  border: 1px solid rgba(143, 168, 160, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  animation: fadeIn 0.5s ease-out 0.1s both;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-family: 'Cinzel Decorative', display;
+  font-weight: 600;
+  color: #8fa8a0;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: 1px;
+}
+
+.admin-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(143, 168, 160, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input {
+  padding: 0.75rem 0.875rem;
+  background: rgba(143, 168, 160, 0.05);
+  border: 1px solid rgba(143, 168, 160, 0.15);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.98);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: rgba(143, 168, 160, 0.4);
+  box-shadow: 0 0 0 3px rgba(143, 168, 160, 0.08);
+  background: rgba(143, 168, 160, 0.08);
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.form-group input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  grid-column: 1 / -1;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8fa8a0 0%, #7a9390 100%);
+  color: #0a0a0d;
+  flex: 1;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #a8c5bc 0%, #8fa8a0 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(143, 168, 160, 0.25);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(143, 168, 160, 0.2);
+  color: rgba(143, 168, 160, 0.9);
+  flex: 0 1 auto;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: rgba(143, 168, 160, 0.35);
+  color: rgba(143, 168, 160, 1);
+  background: rgba(143, 168, 160, 0.05);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Two Column Layout */
+.admin-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 1.5rem;
+  animation: fadeIn 0.5s ease-out 0.2s both;
+}
+
+/* Students List Section */
+.admin-list-section {
+  background: linear-gradient(145deg, rgba(20, 20, 25, 0.95), rgba(15, 15, 20, 0.98));
+  border: 1px solid rgba(143, 168, 160, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  height: fit-content;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.admin-list-section .section-title {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.students-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.student-card {
+  background: rgba(143, 168, 160, 0.05);
+  border: 1px solid rgba(143, 168, 160, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.student-card:hover {
+  background: rgba(143, 168, 160, 0.08);
+  border-color: rgba(143, 168, 160, 0.2);
+}
+
+.student-card.active {
+  background: rgba(143, 168, 160, 0.15);
+  border-color: rgba(143, 168, 160, 0.4);
+}
+
+.student-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.student-info {
+  flex: 1;
+}
+
+.student-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.98);
+  margin: 0;
+}
+
+.student-id {
+  font-size: 0.75rem;
+  color: rgba(143, 168, 160, 0.7);
+  margin: 0.25rem 0 0 0;
+}
+
+.student-email {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+
+.student-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.edit-btn {
+  color: #8fa8a0;
+}
+
+.edit-btn:hover:not(:disabled) {
+  background: rgba(143, 168, 160, 0.2);
+}
+
+.delete-btn {
+  color: #f87171;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: rgba(220, 38, 38, 0.2);
+}
+
+/* Student Details Section */
+.student-details-section {
+  background: linear-gradient(145deg, rgba(20, 20, 25, 0.95), rgba(15, 15, 20, 0.98));
+  border: 1px solid rgba(143, 168, 160, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.details-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(143, 168, 160, 0.1);
+}
+
+.details-title {
+  font-size: 1.5rem;
+  font-family: 'Cinzel Decorative', display;
+  font-weight: 600;
+  color: #8fa8a0;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.details-subtitle {
+  font-size: 0.8rem;
+  color: rgba(143, 168, 160, 0.7);
+  margin: 0.5rem 0 0 0;
+}
+
+.details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.detail-item label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(143, 168, 160, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-item p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.practices-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.practices-title {
+  font-size: 1.1rem;
+  font-family: 'Cinzel Decorative', display;
+  font-weight: 600;
+  color: #8fa8a0;
+  margin: 0 0 1rem 0;
+  letter-spacing: 1px;
+}
+
+.practices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.practice-item {
+  background: rgba(143, 168, 160, 0.05);
+  border: 1px solid rgba(143, 168, 160, 0.1);
+  border-radius: 10px;
+  padding: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.practice-color-bar {
+  width: 4px;
+  min-height: 100%;
+  flex-shrink: 0;
+}
+
+.practice-content {
+  flex: 1;
+  padding: 0.875rem;
+}
+
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.practice-main-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+}
+
+.practice-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.98);
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.practice-sessions {
+  font-size: 0.75rem;
+  background: rgba(143, 168, 160, 0.15);
+  color: #8fa8a0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.practice-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.practice-time svg {
+  width: 14px;
+  height: 14px;
+  color: #8fa8a0;
+}
+
+.empty-practices {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
+
+.empty-practices p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.details-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
+
+.details-empty .empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.details-empty p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.empty-state .empty-subtitle {
+  color: #57534e;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .admin-layout {
+    grid-template-columns: 300px 1fr;
+  }
+
+  .admin-page {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-list-section {
+    max-height: 400px;
+  }
+
+  .admin-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-page {
+    padding: 1rem;
+  }
+
+  .admin-form-section,
+  .admin-list-section,
+  .student-details-section {
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .admin-title {
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* Scrollbar Styling */
+.admin-list-section::-webkit-scrollbar,
+.practices-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-list-section::-webkit-scrollbar-track,
+.practices-list::-webkit-scrollbar-track {
+  background: rgba(143, 168, 160, 0.1);
+  border-radius: 3px;
+}
+
+.admin-list-section::-webkit-scrollbar-thumb,
+.practices-list::-webkit-scrollbar-thumb {
+  background: rgba(143, 168, 160, 0.3);
+  border-radius: 3px;
+}
+
+.admin-list-section::-webkit-scrollbar-thumb:hover,
+.practices-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(143, 168, 160, 0.5);
+}

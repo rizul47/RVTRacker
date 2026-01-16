@@ -1,0 +1,861 @@
+/* ===== IMPORT ARTISTIC FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ===== CSS VARIABLES FOR THEMING ===== */
+:root {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #f5f3f0;
+  --text-secondary: #c9c0b8;
+  --text-tertiary: #8a8278;
+  --accent-1: #c65d3b;
+  --accent-2: #4a5d6b;
+  --border-light: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(30, 27, 23, 0.8);
+  --hover-bg: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f9f6f0;
+  --bg-secondary: #ede8e0;
+  --text-primary: #2a2420;
+  --text-secondary: #5a5248;
+  --text-tertiary: #8a8278;
+  --accent-1: #c65d3b;
+  --accent-2: #4a5d6b;
+  --border-light: rgba(0, 0, 0, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --hover-bg: rgba(0, 0, 0, 0.03);
+}
+
+/* ===== BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/* ===== DASHBOARD PAGE ===== */
+.dashboard-page {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease;
+}
+
+/* ===== BACKGROUND DECORATION ===== */
+.db-bg-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.db-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 1200px 600px at 20% 30%, rgba(198, 93, 59, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 1000px 500px at 80% 70%, rgba(74, 93, 107, 0.06) 0%, transparent 50%);
+  transition: background 0.4s ease;
+}
+
+.db-decorative-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  background-image:
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+  animation: db-drift 20s linear infinite;
+}
+
+[data-theme="light"] .db-decorative-lines {
+  opacity: 0.15;
+}
+
+@keyframes db-drift {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* ===== HEADER ===== */
+.db-header {
+  position: relative;
+  z-index: 100;
+  padding: 1.5rem 2rem 1.5rem 7rem;
+  border-bottom: 1px solid var(--border-light);
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+}
+
+[data-theme="light"] .db-header {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.db-header-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.db-logo-section {
+  text-align: left;
+}
+
+.db-logo {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--text-primary);
+  margin: 0 0 0.2rem 0;
+  transition: color 0.3s ease;
+  font-style: italic;
+}
+
+.db-tagline {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 0;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  letter-spacing: 1.5px;
+}
+
+.db-user-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.db-user-greeting {
+  font-family: 'Crimson Text', serif;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .db-user-greeting {
+    display: block;
+  }
+}
+
+.db-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.db-theme-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.db-theme-btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.db-theme-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.db-logout-btn {
+  background: var(--accent-1);
+  border: none;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  width: 36px;
+  height: 36px;
+}
+
+.db-logout-btn:hover {
+  background: #b34d2e;
+}
+
+.db-logout-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== MAIN CONTENT ===== */
+.db-main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  padding: 3rem 2rem;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ===== SECTION STYLES ===== */
+.db-section {
+  margin-bottom: 4rem;
+}
+
+.db-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+
+.db-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.3rem 0;
+  letter-spacing: 2px;
+}
+
+.db-section-subtitle {
+  font-family: 'Cormorant+Garamond', serif;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.db-view-all-btn {
+  background: transparent;
+  border: 2px solid var(--accent-1);
+  color: var(--accent-1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.db-view-all-btn:hover {
+  background: var(--accent-1);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ===== RITUALS GRID ===== */
+.db-rituals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===== RITUAL CARD ===== */
+.db-ritual-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  padding: 1.8rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  min-height: 300px;
+}
+
+.db-ritual-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.db-ritual-card:hover::before {
+  opacity: 1;
+}
+
+.db-ritual-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .db-ritual-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.db-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.db-card-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin: 0;
+  letter-spacing: 1.5px;
+  flex: 1;
+  line-height: 1.2;
+}
+
+.db-card-accent {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  opacity: 0.1;
+  transition: all 0.3s ease;
+}
+
+.db-ritual-card:hover .db-card-accent {
+  opacity: 0.2;
+  transform: scale(1.1);
+}
+
+/* ===== STATS ===== */
+.db-card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.db-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.db-stat-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.db-stat-value {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+/* ===== PROGRESS BAR ===== */
+.db-progress-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.db-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-color));
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== PRACTICE BUTTON ===== */
+.db-practice-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  padding: 0.9rem;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.db-practice-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.db-practice-btn:hover::after {
+  opacity: 1;
+}
+
+.db-practice-btn:hover {
+  border-color: var(--accent-color);
+  color: white;
+  transform: scale(1.02);
+}
+
+.db-practice-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* ===== VALUES GRID ===== */
+.db-values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===== VALUE CARD ===== */
+.db-value-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  padding: 1.8rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  min-height: 300px;
+}
+
+.db-value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.db-value-card:hover::before {
+  opacity: 1;
+}
+
+.db-value-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .db-value-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== PRACTICE MODAL ===== */
+.db-practice-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  backdrop-filter: blur(5px);
+  animation: db-fadeIn 0.3s ease;
+}
+
+@keyframes db-fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.db-practice-container {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.db-practice-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.db-practice-close:hover {
+  color: var(--text-primary);
+}
+
+.db-practice-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.db-practice-type {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.db-practice-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.db-practice-timer {
+  padding: 2rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  border: 1px solid var(--border-light);
+}
+
+.db-timer-display {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-1);
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.db-practice-timer p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.db-practice-actions {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.db-practice-start-btn {
+  background: var(--accent-1);
+  border: none;
+  color: white;
+  padding: 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.db-practice-start-btn:hover {
+  background: #b34d2e;
+  transform: translateY(-2px);
+}
+
+.db-practice-start-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.db-practice-cancel-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  padding: 0.8rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.db-practice-cancel-btn:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+/* ===== BOTTOM NAVIGATION ===== */
+.db-bottom-nav {
+  position: relative;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--border-light);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .db-bottom-nav {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.db-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  padding: 0.8rem;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.db-nav-item:hover,
+.db-nav-item.active {
+  background: var(--hover-bg);
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+}
+
+.db-nav-item svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+
+  .db-rituals-grid,
+  .db-values-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .db-main {
+    padding: 2rem 1.5rem;
+  }
+
+  .db-section-header {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .db-header {
+    padding: 1.2rem 1.2rem 1.2rem 6rem;
+  }
+
+  .db-header-content {
+    gap: 1rem;
+  }
+
+  .db-logo {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+
+  .db-main {
+    padding: 1.5rem 1rem;
+  }
+
+  .db-rituals-grid,
+  .db-values-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .db-section-title {
+    font-size: 1.8rem;
+  }
+
+  .db-ritual-card,
+  .db-value-card {
+    padding: 1.2rem;
+    min-height: 260px;
+    gap: 1rem;
+  }
+
+  .db-card-title {
+    font-size: 1.1rem;
+  }
+
+  .db-stat-value {
+    font-size: 1.2rem;
+  }
+
+  .db-bottom-nav {
+    padding: 0.8rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .db-header {
+    padding: 1rem 0.8rem;
+  }
+
+  .db-logo {
+    font-size: 1.2rem;
+  }
+
+  .db-tagline {
+    font-size: 0.7rem;
+  }
+
+  .db-main {
+    padding: 1rem 0.8rem;
+  }
+
+  .db-section-title {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .db-rituals-grid,
+  .db-values-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .db-ritual-card,
+  .db-value-card {
+    padding: 1rem;
+    min-height: 240px;
+  }
+
+  .db-card-title {
+    font-size: 1rem;
+  }
+
+  .db-stat-value {
+    font-size: 1rem;
+  }
+
+  .db-practice-container {
+    padding: 2rem 1.5rem;
+    width: 95%;
+  }
+
+  .db-timer-display {
+    font-size: 2.5rem;
+  }
+
+  .db-bottom-nav {
+    padding: 0.6rem 0.8rem;
+    gap: 0.3rem;
+  }
+
+  .db-nav-item {
+    padding: 0.6rem;
+    font-size: 0.65rem;
+    gap: 0.2rem;
+  }
+
+  .db-nav-item svg {
+    width: 16px;
+    height: 16px;
+  }
+}
